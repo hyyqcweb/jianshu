@@ -58,6 +58,20 @@ export const NavItem = styled.div`
 	}
 `;
 
+export const SearchGroup = styled.div`
+	float: left;
+	position:relative;
+	.iconfont {
+		position: absolute;
+		right: 0px;
+		bottom: 12px;
+		width:30px;
+		line-height:30px;
+		text-align:center;
+		border-radius:15px;
+	}
+`;
+
 export const NavSearch = styled.input.attrs({
 	placeholder: '搜索'
 })`
