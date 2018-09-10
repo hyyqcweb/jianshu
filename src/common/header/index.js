@@ -10,9 +10,30 @@ import {
 	NavSearch, 
 	Addition,
 	Button
-} from './style'
+} from './style';
+import { CSSTransition } from 'react-transition-group';
 
 export default class Header extends Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			focused: false
+		}
+	}
+
+	handleFocus = () => {
+		this.setState({
+			focused: true
+		})
+	}
+
+	handleBlur = () => {
+		this.setState({
+			focused: false
+		})
+	}
+
     render() {
         return (
         	<NavBarDefault>
@@ -27,8 +48,14 @@ export default class Header extends Component {
 							<i className="iconfont">&#xe636;</i>
 						</NavItem>
 						<SearchGroup>
-							<NavSearch></NavSearch>
-							<i className="iconfont">&#xe614;</i>
+							<CSSTransition
+								in={this.state.focused}
+								timeout={200}
+								classNames="slide"
+							>
+								<NavSearch className={this.state.focused ? 'focused' : ''}  onFocus={this.handleFocus} onBlur={this.handleBlur}></NavSearch>
+							</CSSTransition>
+							<i className={this.state.focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
 						</SearchGroup>
 					</Nav>
 					<Addition>
