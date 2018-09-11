@@ -24,7 +24,7 @@ export default (state = defaultState, action) => {
 			// return {focused: false}
 			return state.set('focused', false); 
 		case constants.CHANGE_LIST:
-			return state.set('list',action.data);
+			return state.set('list', action.data);
 		default: 
 			return state;
 	}
