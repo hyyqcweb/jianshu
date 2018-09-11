@@ -8,12 +8,43 @@ import {
 	NavItem,
 	SearchGroup, 
 	NavSearch, 
+	SearchInfo,
+	SearchInfoTitle,
+	SearchInfoSwitch,
+	SearchInfoList,
+	SearchInfoItem,
 	Addition,
-	Button
+	Button,
+
 } from './style';
 import { CSSTransition } from 'react-transition-group';
 import { connect} from 'react-redux';
 import { actionCreators} from './store';
+
+const getListArea = (show) => {
+	if(show) {
+		return (
+			<SearchInfo>
+				<SearchInfoTitle>
+					热门搜索
+					<SearchInfoSwitch>换一批</SearchInfoSwitch>
+				</SearchInfoTitle>
+				<SearchInfoList>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>简书</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+					<SearchInfoItem>教育</SearchInfoItem>
+				</SearchInfoList>
+			</SearchInfo>
+		)
+	}else{
+		return null
+	}
+}
 
 const Header = ({focused, handleInputFocus, handleInputBlur}) => {
 	return (
@@ -37,6 +68,7 @@ const Header = ({focused, handleInputFocus, handleInputBlur}) => {
 								<NavSearch className={focused ? 'focused' : ''}  onFocus={handleInputFocus} onBlur={handleInputBlur}></NavSearch>
 							</CSSTransition>
 							<i className={focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
+							{getListArea(focused)}
 						</SearchGroup>
 					</Nav>
 					<Addition>
