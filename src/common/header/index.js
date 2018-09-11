@@ -21,34 +21,34 @@ import { CSSTransition } from 'react-transition-group';
 import { connect} from 'react-redux';
 import { actionCreators} from './store';
 
-const getListArea = (show) => {
-	if(show) {
-		return (
-			<SearchInfo>
-				<SearchInfoTitle>
-					热门搜索
-					<SearchInfoSwitch>换一批</SearchInfoSwitch>
-				</SearchInfoTitle>
-				<SearchInfoList>
-					<SearchInfoItem>教育</SearchInfoItem>
-					<SearchInfoItem>简书</SearchInfoItem>
-					<SearchInfoItem>教育</SearchInfoItem>
-					<SearchInfoItem>教育</SearchInfoItem>
-					<SearchInfoItem>教育</SearchInfoItem>
-					<SearchInfoItem>教育</SearchInfoItem>
-					<SearchInfoItem>教育</SearchInfoItem>
-					<SearchInfoItem>教育</SearchInfoItem>
-				</SearchInfoList>
-			</SearchInfo>
-		)
-	}else{
-		return null
-	}
-}
+class Header extends React.Component {
 
-const Header = ({focused, handleInputFocus, handleInputBlur}) => {
-	return (
-        	<NavBarDefault>
+	getListArea() {
+		if(this.props.focused) {
+			return (
+				<SearchInfo>
+					<SearchInfoTitle>
+						热门搜索
+						<SearchInfoSwitch>换一批</SearchInfoSwitch>
+					</SearchInfoTitle>
+					<SearchInfoList>
+						{
+							this.props.list.map((item) => {
+								return <SearchInfoItem key={item}>{item}</SearchInfoItem>
+							})
+						}
+					</SearchInfoList>
+				</SearchInfo>
+			)
+		}else{
+			return null
+		}
+	}
+
+	render() {
+		const {focused, handleInputFocus, handleInputBlur} = this.props;
+		return (
+			<NavBarDefault>
         		<HeaderWrapper>
 	              <Container>
 					<Logo/> 
@@ -68,7 +68,7 @@ const Header = ({focused, handleInputFocus, handleInputBlur}) => {
 								<NavSearch className={focused ? 'focused' : ''}  onFocus={handleInputFocus} onBlur={handleInputBlur}></NavSearch>
 							</CSSTransition>
 							<i className={focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
-							{getListArea(focused)}
+							{this.getListArea()}
 						</SearchGroup>
 					</Nav>
 					<Addition>
@@ -81,12 +81,15 @@ const Header = ({focused, handleInputFocus, handleInputBlur}) => {
 				  </Container>
 				</HeaderWrapper>
         	</NavBarDefault>
-        )
+		)
+	}
 }
+
 const mapStateToProps = (state) => {
 	return {
 		// 等价于下面的代码 focused: state.getIn(['header','focused'])
-		focused: state.get('header').get('focused')  // 引入 redux-immutable
+		focused: state.get('header').get('focused'),  // 引入 redux-immutable
+		list: state.getIn(['header','list'])
 		// focused : state.header.get('focused') // 引入immutable
 		// focused : state.header.focused // 没有引入immutable
 	}
@@ -94,6 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleInputFocus() {
+			dispatch(actionCreators.getList());
 			dispatch(actionCreators.searchFocus());
 		},
 		handleInputBlur() {
