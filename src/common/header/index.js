@@ -24,7 +24,15 @@ import { actionCreators} from './store';
 class Header extends React.Component {
 
 	getListArea() {
-		const {focused, list} = this.props;
+		const {focused, list, page} = this.props;
+		const pageList = [];
+		const newList = list.toJS();
+
+		for(let i= ((page-1) * 10); i < page*10; i++) {
+			pageList.push(
+				<SearchInfoItem key={Math.random() *100}>{newList[i]}</SearchInfoItem>
+			)
+		}
 		if(focused) {
 			return (
 				<SearchInfo>
@@ -33,11 +41,7 @@ class Header extends React.Component {
 						<SearchInfoSwitch>换一批</SearchInfoSwitch>
 					</SearchInfoTitle>
 					<SearchInfoList>
-						{
-							list.map((item) => {
-								return <SearchInfoItem key={item}>{item}</SearchInfoItem>
-							})
-						}
+						{pageList}
 					</SearchInfoList>
 				</SearchInfo>
 			)
@@ -90,7 +94,8 @@ const mapStateToProps = (state) => {
 	return {
 		// 等价于下面的代码 focused: state.getIn(['header','focused'])
 		focused: state.get('header').get('focused'),  // 引入 redux-immutable
-		list: state.getIn(['header','list'])
+		list: state.getIn(['header','list']),
+		page: state.getIn(['header','page'])
 		// focused : state.header.get('focused') // 引入immutable
 		// focused : state.header.focused // 没有引入immutable
 	}

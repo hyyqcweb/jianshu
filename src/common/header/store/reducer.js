@@ -4,7 +4,9 @@ import { fromJS } from 'immutable';
 // immutable
 const defaultState = fromJS({
 	focused: false,
-	list: []
+	list: [],
+	page: 1,
+	totalPage: 1
 })
 
 // 没有immutable
@@ -24,7 +26,7 @@ export default (state = defaultState, action) => {
 			// return {focused: false}
 			return state.set('focused', false); 
 		case constants.CHANGE_LIST:
-			return state.set('list', action.data);
+			return state.set('list', action.data).set('totalPage',action.totalPage);
 		default: 
 			return state;
 	}
