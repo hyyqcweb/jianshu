@@ -53,7 +53,8 @@ const Header = ({focused, handleInputFocus, handleInputBlur}) => {
 }
 const mapStateToProps = (state) => {
 	return {
-		focused : state.header.focused
+		focused : state.header.get('focused') // 引入immutable
+		// focused : state.header.focused // 没有引入immutable
 	}
 }
 const mapDispatchToProps = (dispatch) => {
