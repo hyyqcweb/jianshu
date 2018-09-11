@@ -22,13 +22,13 @@ export default class Header extends Component {
 		}
 	}
 
-	handleFocus = () => {
+	handleInputFocus = () => {
 		this.setState({
 			focused: true
 		})
 	}
 
-	handleBlur = () => {
+	handleInputBlur = () => {
 		this.setState({
 			focused: false
 		})
@@ -53,7 +53,7 @@ export default class Header extends Component {
 								timeout={200}
 								classNames="slide"
 							>
-								<NavSearch className={this.state.focused ? 'focused' : ''}  onFocus={this.handleFocus} onBlur={this.handleBlur}></NavSearch>
+								<NavSearch className={this.state.focused ? 'focused' : ''}  onFocus={this.handleInputFocus} onBlur={this.handleInputBlur}></NavSearch>
 							</CSSTransition>
 							<i className={this.state.focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
 						</SearchGroup>
