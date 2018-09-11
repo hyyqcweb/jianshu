@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { 
 	NavBarDefault,
 	HeaderWrapper,
@@ -12,30 +12,10 @@ import {
 	Button
 } from './style';
 import { CSSTransition } from 'react-transition-group';
+import {connect} from 'react-redux';
 
-export default class Header extends Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			focused: false
-		}
-	}
-
-	handleInputFocus = () => {
-		this.setState({
-			focused: true
-		})
-	}
-
-	handleInputBlur = () => {
-		this.setState({
-			focused: false
-		})
-	}
-
-    render() {
-        return (
+const Header = ({focused, handleInputFocus, handleInputBlur}) => {
+	return (
         	<NavBarDefault>
         		<HeaderWrapper>
 	              <Container>
@@ -49,13 +29,13 @@ export default class Header extends Component {
 						</NavItem>
 						<SearchGroup>
 							<CSSTransition
-								in={this.state.focused}
+								in={focused}
 								timeout={200}
 								classNames="slide"
 							>
-								<NavSearch className={this.state.focused ? 'focused' : ''}  onFocus={this.handleInputFocus} onBlur={this.handleInputBlur}></NavSearch>
+								<NavSearch className={focused ? 'focused' : ''}  onFocus={handleInputFocus} onBlur={handleInputBlur}></NavSearch>
 							</CSSTransition>
-							<i className={this.state.focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
+							<i className={focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
 						</SearchGroup>
 					</Nav>
 					<Addition>
@@ -68,7 +48,28 @@ export default class Header extends Component {
 				  </Container>
 				</HeaderWrapper>
         	</NavBarDefault>
-    		
         )
-    }
 }
+const mapStateToProps = (state) => {
+	return {
+		focused : state.focused
+	}
+}
+const mapDispatchToProps = (dispatch) => {
+	return {
+		handleInputFocus() {
+			const action = {
+				type: 'search_focus'
+			};
+			dispatch(action);
+		},
+		handleInputBlur() {
+			const action = {
+				type: 'search_blur'
+			};
+			dispatch(action);
+		}
+	}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Header)
