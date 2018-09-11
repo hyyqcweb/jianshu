@@ -3,11 +3,11 @@ import { fromJS } from 'immutable';
 
 // immutable
 const defaultState = fromJS({
-	focused: false,
-	mouseIn: false,
-	list: [],
-	page: 1,
-	totalPage: 1
+	focused: false, // input 聚焦和没聚焦
+	mouseIn: false, // 移入移出
+	list: [], 
+	page: 1, // 为了实现10个一页
+	totalPage: 1 //spin 动画效果,换一批(就是 切换页码)
 })
 
 // 没有immutable
