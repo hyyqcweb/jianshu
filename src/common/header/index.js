@@ -24,7 +24,7 @@ import { actionCreators} from './store';
 class Header extends React.Component {
 
 	getListArea() {
-		const {focused, list, page} = this.props;
+		const {focused, list, page, handleMouseEnter, handleMouseLeave, mouseIn, handleChangePage, totalPage} = this.props;
 		const pageList = [];
 		const newList = list.toJS();
 
@@ -33,12 +33,15 @@ class Header extends React.Component {
 				<SearchInfoItem key={Math.random() *100}>{newList[i]}</SearchInfoItem>
 			)
 		}
-		if(focused) {
+		if(focused || mouseIn) {
 			return (
-				<SearchInfo>
+				<SearchInfo 
+					onMouseEnter={handleMouseEnter}
+					onMouseLeave={handleMouseLeave}
+				>
 					<SearchInfoTitle>
 						热门搜索
-						<SearchInfoSwitch>换一批</SearchInfoSwitch>
+						<SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>换一批</SearchInfoSwitch>
 					</SearchInfoTitle>
 					<SearchInfoList>
 						{pageList}
@@ -95,7 +98,9 @@ const mapStateToProps = (state) => {
 		// 等价于下面的代码 focused: state.getIn(['header','focused'])
 		focused: state.get('header').get('focused'),  // 引入 redux-immutable
 		list: state.getIn(['header','list']),
-		page: state.getIn(['header','page'])
+		page: state.getIn(['header','page']),
+		totalPage: state.getIn(['header','totalPage']),
+		mouseIn: state.getIn(['header','mouseIn']),
 		// focused : state.header.get('focused') // 引入immutable
 		// focused : state.header.focused // 没有引入immutable
 	}
@@ -108,6 +113,20 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		handleInputBlur() {
 			dispatch(actionCreators.searchBlur());
+		},
+		handleMouseEnter() {
+			dispatch(actionCreators.mouseEnter());
+		},
+		handleMouseLeave() {
+			dispatch(actionCreators.mouseLeave());
+		},
+		handleChangePage(page, totalPage) {
+			if(page < totalPage) {
+				dispatch(actionCreators.changePage(page + 1));
+			}else{
+				dispatch(actionCreators.changePage(1));
+			}
+			
 		}
 	}
 }
