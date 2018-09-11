@@ -53,7 +53,9 @@ const Header = ({focused, handleInputFocus, handleInputBlur}) => {
 }
 const mapStateToProps = (state) => {
 	return {
-		focused : state.header.get('focused') // 引入immutable
+		// 等价于下面的代码 focused: state.getIn(['header','focused'])
+		focused: state.get('header').get('focused')  // 引入 redux-immutable
+		// focused : state.header.get('focused') // 引入immutable
 		// focused : state.header.focused // 没有引入immutable
 	}
 }
