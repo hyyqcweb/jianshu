@@ -147,7 +147,10 @@ export const SearchInfoList = styled.div`
 	overflow: hidden;
 `;
 
-export const SearchInfoItem = styled.a`
+export const SearchInfoItem = styled.a.attrs({
+	 href: 'https://www.jianshu.com/'
+})`
+	text-decoration: none;
 	font-size: 12px;
 	padding: 0 5px;
 	line-height: 20px;

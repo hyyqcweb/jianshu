@@ -27,12 +27,13 @@ class Header extends React.Component {
 		const {focused, list, page, handleMouseEnter, handleMouseLeave, mouseIn, handleChangePage, totalPage} = this.props;
 		const pageList = [];
 		const newList = list.toJS();
-
+		
 		for(let i= ((page-1) * 10); i < page*10; i++) {
 			pageList.push(
 				<SearchInfoItem key={Math.random() *100}>{newList[i]}</SearchInfoItem>
 			)
 		}
+		
 		if(focused || mouseIn) {
 			return (
 				<SearchInfo 
@@ -104,6 +105,7 @@ const mapStateToProps = (state) => {
 		page: state.getIn(['header','page']),
 		totalPage: state.getIn(['header','totalPage']),
 		mouseIn: state.getIn(['header','mouseIn']),
+
 		// focused : state.header.get('focused') // 引入immutable
 		// focused : state.header.focused // 没有引入immutable
 	}
@@ -124,6 +126,7 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(actionCreators.mouseLeave());
 		},
 		handleChangePage(page, totalPage, spin) {
+			// replace(/[^0-9]/ig,'') 过滤出0-9之间的数字, 对于非数字的一律 置空
 			let originAngle = spin.style.transform.replace(/[^0-9]/ig,'');
 			if(originAngle) {
 				originAngle = parseInt(originAngle,10);

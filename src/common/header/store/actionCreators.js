@@ -5,7 +5,7 @@ import axios from 'axios';
 const changeList = (data) => ({
 	type: constants.CHANGE_LIST,
 	data: fromJS(data),
-	totalPage: Math.ceil( data.length / 10 )
+	totalPage: Math.ceil( data.length / 10 )  // length长度
 })
 
 export const searchFocus = () => ({
