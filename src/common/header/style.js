@@ -74,7 +74,7 @@ export const SearchGroup = styled.div`
 	.slide-exit-active {
 		width: 160px;
 	}
-	.iconfont {
+	.zoom {
 		position: absolute;
 		right: 5px;
 		bottom: 12px;
@@ -132,6 +132,15 @@ export const SearchInfoTitle = styled.div`
 export const SearchInfoSwitch = styled.span`
 	float: right;
 	font-size: 13px;
+    cursor: pointer;
+	.spin{
+		display:block;
+		float:left;
+		font-size: 12px;
+		margin-right: 5px;
+		transition: all .5s;
+		transform-origin: center center;
+	}
 `;
 
 export const SearchInfoList = styled.div`

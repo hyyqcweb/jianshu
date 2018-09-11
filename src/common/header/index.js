@@ -41,7 +41,10 @@ class Header extends React.Component {
 				>
 					<SearchInfoTitle>
 						热门搜索
-						<SearchInfoSwitch onClick={() => handleChangePage(page, totalPage)}>换一批</SearchInfoSwitch>
+						<SearchInfoSwitch onClick={() => handleChangePage(page, totalPage, this.sponIcon)}>
+						<i ref={(icon) => {this.sponIcon = icon}} className="iconfont spin">&#xe852;</i>
+							换一批
+						</SearchInfoSwitch>
 					</SearchInfoTitle>
 					<SearchInfoList>
 						{pageList}
@@ -65,7 +68,7 @@ class Header extends React.Component {
 						<NavItem className='left'>下载App</NavItem>
 						<NavItem className='right'>登陆</NavItem>
 						<NavItem className='right'>
-							<i className="iconfont">&#xe636;</i>
+							<i className="iconfont zoom">&#xe636;</i>
 						</NavItem>
 						<SearchGroup>
 							<CSSTransition
@@ -75,7 +78,7 @@ class Header extends React.Component {
 							>
 								<NavSearch className={focused ? 'focused' : ''}  onFocus={handleInputFocus} onBlur={handleInputBlur}></NavSearch>
 							</CSSTransition>
-							<i className={focused ? 'focused iconfont' : 'iconfont'}>&#xe614;</i>
+							<i className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}>&#xe614;</i>
 							{this.getListArea()}
 						</SearchGroup>
 					</Nav>
@@ -120,7 +123,14 @@ const mapDispatchToProps = (dispatch) => {
 		handleMouseLeave() {
 			dispatch(actionCreators.mouseLeave());
 		},
-		handleChangePage(page, totalPage) {
+		handleChangePage(page, totalPage, spin) {
+			let originAngle = spin.style.transform.replace(/[^0-9]/ig,'');
+			if(originAngle) {
+				originAngle = parseInt(originAngle,10);
+			}else{
+				originAngle = 0;
+			}
+			spin.style.transform = 'rotate(' + (originAngle + 360) + 'deg)';
 			if(page < totalPage) {
 				dispatch(actionCreators.changePage(page + 1));
 			}else{
