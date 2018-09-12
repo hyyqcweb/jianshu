@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
+import { TopicWrapper, TopicItem } from'../style';
+import { connect } from 'react-redux';
 
-// 主题
+// 专题
 class Topic extends Component {
     render() {
+    	const {topicList} = this.props;
         return (
-            <div>
-				Topic
-			</div>
+            <TopicWrapper>
+            {
+            	topicList.map((item) => (
+					<TopicItem key={item.get('id')}>
+						<img className="topic-img" src={item.get('imgUrl')} alt=""/>
+						{item.get('title')}
+					</TopicItem>
+            	))
+            }
+			</TopicWrapper>
         )
     }
 }
-export default Topic;
+const mapStateTopProps = (state) => ({
+	topicList: state.getIn(['home','topicList'])
+});
+
+// const mapDispatchToProps = 
+export default connect(mapStateTopProps,null)(Topic);
