@@ -18,9 +18,10 @@ export const HomeLeft = styled.div`
 `;
 
 export const HomeRight = styled.div`
-	width: 240px;
+	width: 290px;
 	float: right;
 	padding-top: 30px;
+	margin-left: 30px;
 `;
 
 // 专题
@@ -111,4 +112,21 @@ export const ListMeta = styled.div`
 	.iconfont {
 		font-size: 12px;
 	}
+`;
+
+// 右上广告
+export const RecommendWrapper = styled.div`
+	margin-top: -4px;
+    padding-bottom: 4px;
+    min-height: 228px;
+    cursor: pointer;
+    li {
+    	list-style-type: none;
+    	img {
+    		width: 100%;
+		    min-height: 50px;
+		    margin-bottom: 6px;
+		    border-radius: 4px;
+    	}
+    }
 `;
