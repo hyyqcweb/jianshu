@@ -51,3 +51,16 @@ export const TopicItem = styled.span`
 		margin-right: 10px;
 	}
 `;
+
+export const TopicTitle = styled.a.attrs({
+	href : '/'
+})`
+	float: left;
+	display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #787878;
+    margin-left: 10px;
+    text-decoration: none;
+    cursor: pointer;
+`;

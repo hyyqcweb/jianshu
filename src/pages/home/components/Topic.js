@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TopicWrapper, TopicItem } from'../style';
+import { TopicWrapper, TopicItem, TopicTitle } from'../style';
 import { connect } from 'react-redux';
 
 // 专题
@@ -16,6 +16,7 @@ class Topic extends Component {
 					</TopicItem>
             	))
             }
+            <TopicTitle>更多热门专题 &gt;</TopicTitle>
 			</TopicWrapper>
         )
     }
