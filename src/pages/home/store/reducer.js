@@ -1,20 +1,44 @@
 import { fromJS } from 'immutable';
-import TopicImg01 from '../../../statics/topic/topic01.jpg';
-import TopicImg02 from '../../../statics/topic/topic02.jpg';
+import topicImg from '../../../statics/topic';
 
 // immutable
 const defaultState = fromJS({
 	topicList: [
 		{
 			id: 1,
-			title: '社会热点',
-			imgUrl: TopicImg01
+			title: '旅行·在路上',
+			imgUrl: topicImg.TopicImg06
 		},
 		{
 			id: 2,
 			title: '摄影',
-			imgUrl: TopicImg02
-		}
+			imgUrl: topicImg.TopicImg02
+		},
+		{
+			id: 3,
+			title: '自然科普',
+			imgUrl: topicImg.TopicImg03
+		},
+		{
+			id: 4,
+			title: '@IT·互联网',
+			imgUrl: topicImg.TopicImg05
+		},
+		{
+			id: 5,
+			title: '故事',
+			imgUrl: topicImg.TopicImg07
+		},
+		{
+			id: 6,
+			title: '简书电影',
+			imgUrl: topicImg.TopicImg04
+		},
+		{
+			id: 7,
+			title: '手绘',
+			imgUrl: topicImg.TopicImg01
+		},
 	]
 });
 
