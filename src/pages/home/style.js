@@ -130,3 +130,50 @@ export const RecommendWrapper = styled.div`
     	}
     }
 `;
+// qrcode download modal(tip)
+export const QrcodeWrapper = styled.div`
+    margin-bottom: 30px;
+    padding: 10px 22px;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background-color: #fff;
+    position:relative;
+    cursor: pointer;
+    .qrcode {
+    	width: 60px;
+	    height: 60px;
+	    opacity: .85;
+    }
+    .info {
+    	display: inline-block;
+	    position: absolute;
+	    left: 90px;
+	    top: 22px;
+	    .title {
+		    font-size: 15px;
+		    line-height: 20px;
+		    color: #333;
+	    }
+	    .description {
+    	    margin-top: 4px;
+		    font-size: 13px;
+		    color: #999;
+	    }
+    }
+    .modal-qrcode {
+    	position: absolute;
+    	width: 150px;
+    	height: 150px;
+    	background: #fff;
+	    border: 1px solid #dcdcdc;
+	    border-radius: 10px;
+        box-shadow: 0 6px 20px #dcdcdc;
+        top: -185px;
+	    left: 60px;
+	    padding: 10px;
+    	img {
+    		width: 100%;
+        	transition: all 2s;
+    	}
+    }
+`;
