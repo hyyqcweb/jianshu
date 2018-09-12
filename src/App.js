@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Header from './common/header';
 import { BrowserRouter, Route } from 'react-router-dom';
 import store from './store';
+import Home from './pages/home';
+import Detail from './pages/detail';
 import {Provider} from 'react-redux';
 
 // exact 精准匹配
@@ -14,8 +16,8 @@ class App extends Component {
 	      	<Header/>
 	        <BrowserRouter>
 	        	<div>
-	        		<Route path='/' exact render={() => <div>home</div>}></Route>
-	        		<Route path='/detail' exact render={() => <div>detail</div>}></Route>
+	        		<Route path='/' exact component={Home}></Route>
+	        		<Route path='/detail' exact component={Detail}></Route>
 	        	</div>
 	        </BrowserRouter>
 	      </div>
