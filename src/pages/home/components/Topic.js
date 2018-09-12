@@ -25,5 +25,4 @@ const mapStateTopProps = (state) => ({
 	topicList: state.getIn(['home','topicList'])
 });
 
-// const mapDispatchToProps = 
 export default connect(mapStateTopProps,null)(Topic);

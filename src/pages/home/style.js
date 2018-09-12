@@ -82,6 +82,7 @@ export const ListItem = styled.div`
 export const ListInfo = styled.div`
 	width: 500px;
 	float: left;
+	margin: 0 0 8px;
 	.title {
 		line-height: 27px;
 		font-size: 18px;
@@ -92,5 +93,22 @@ export const ListInfo = styled.div`
 		line-height: 24px;
 		font-size: 13px;
 		color: #999;
+	}
+`;
+
+export const ListMeta = styled.div`
+	span{
+		font-size: 12px;
+	    font-weight: 400;
+	    line-height: 20px;
+	    cursor: pointer;
+	    margin-right: 10px;
+	    color: #b4b4b4;
+	    &:hover {
+	    	color: #787878;
+	    }
+	}
+	.iconfont {
+		font-size: 12px;
 	}
 `;
