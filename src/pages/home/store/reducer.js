@@ -55,6 +55,7 @@ const defaultState = fromJS({
 			imgUrl: 'https://upload-images.jianshu.io/upload_images/6693515-8154b2372b08eca9?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
 		}
 	],
+	writerList: [],
 	mouseIn: false
 });
 
@@ -65,6 +66,8 @@ export default (state = defaultState, action) => {
 			return state.set('mouseIn',true);
 		case constants.MOUSE_LEAVE:
 			return state.set('mouseIn',false);
+		case constants.CHANGE_LIST:
+			return state.set('writerList', action.data)
 		default: 
 			return state;
 	}

@@ -115,6 +115,7 @@ export const ListMeta = styled.div`
 `;
 
 // 右上广告
+
 export const RecommendWrapper = styled.div`
 	margin-top: -4px;
     padding-bottom: 4px;
@@ -130,7 +131,9 @@ export const RecommendWrapper = styled.div`
     	}
     }
 `;
+
 // qrcode download modal(tip)
+
 export const QrcodeWrapper = styled.div`
     margin-bottom: 30px;
     padding: 10px 22px;
@@ -176,4 +179,74 @@ export const QrcodeWrapper = styled.div`
         	transition: all 2s;
     	}
     }
+`;
+
+// 作者部分
+
+export const WriterWrapper = styled.div`
+	width: 290px;
+	border-radius: 3px;
+	overflow: hidden;
+`;
+
+export const WriterTitle = styled.div`
+	height: 26px;
+	line-height: 26px;
+	font-size: 14px;
+    color: #969696;
+    cursor:pointer;
+	.author {
+		float: left;
+	}
+	.barter {
+		float: right;
+		.iconfont{
+			font-size: 12px;
+		}
+	}
+`;
+
+export const WriterList = styled.div`
+	margin-top:15px;
+	line-height: 20px;
+	float: left;
+	width: 100%;
+	position:relative;
+	overflow: hidden;
+	.avatar {
+	    float: left;
+	    width: 48px;
+	    height: 48px;
+	    margin-right: 10px;
+	    border: 1px solid #ddd;
+	    border-radius: 50%;
+	}
+	.info {
+		float: left;
+		text-align: left;
+		.title {
+		    padding-top: 5px;
+		    margin-right: 60px;
+		    font-size: 14px;
+		    display: block;
+		    cursor:pointer;
+		}
+		.description {
+			margin-top: 2px;
+		    font-size: 12px;
+		    color: #969696;
+		}
+	}
+	.attention {
+	    position: absolute;
+	    top: 5px;
+	    right: 0;
+	    padding: 0;
+	    font-size: 13px;
+	    color: #42c02e;
+	    cursor:pointer;
+	    .plus {
+	    	font-size: 12px;
+	    }
+	}
 `;
