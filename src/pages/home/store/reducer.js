@@ -39,6 +39,20 @@ const defaultState = fromJS({
 			title: '手绘',
 			imgUrl: topicImg.TopicImg01
 		},
+	],
+	acticleList: [
+		{
+			id: 1,
+			title: '把握好人际交往的尺度，内心想不快乐都难',
+			desc: '我们终其一生，都在寻找人际交往的那个“尺度”、“界限”到底在哪? 为什么你好心帮了别人，反而让别人觉得很尴尬，好心办成了坏事? 为什么有的人只是...',
+			imgUrl: 'https://upload-images.jianshu.io/upload_images/6693515-8154b2372b08eca9?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
+		},
+		{
+			id: 2,
+			title: '把握好人际交往的尺度，内心想不快乐都难',
+			desc: '我们终其一生，都在寻找人际交往的那个“尺度”、“界限”到底在哪? 为什么你好心帮了别人，反而让别人觉得很尴尬，好心办成了坏事? 为什么有的人只是...',
+			imgUrl: 'https://upload-images.jianshu.io/upload_images/6693515-8154b2372b08eca9?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240'
+		}
 	]
 });
 
