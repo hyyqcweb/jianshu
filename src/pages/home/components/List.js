@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ListItem, ListInfo, ListMeta, LoadMore } from '../style';
 import { connect } from 'react-redux';
 import { actionCreators } from '../store';
+import { Link } from 'react-router-dom';
 // 列表
 class List extends Component {
     render() {
@@ -12,10 +13,12 @@ class List extends Component {
 	            list.map((item,index) => (
 	                <ListItem key={index}>
 							<img className="list-pic" src={item.get('imgUrl')} alt=""/>
-							<ListInfo>
-								<h3 className="title">{item.get('title')}</h3>
-								<p className="desc">{item.get('desc')}</p>
-							</ListInfo>
+							<Link to={ '/detail/' + item.get('id')}>
+								<ListInfo>
+									<h3 className="title">{item.get('title')}</h3>
+									<p className="desc">{item.get('desc')}</p>
+								</ListInfo>
+							</Link>
 							<ListMeta>
 								<span>静定如常</span>
 								<span className="iconfont"><i className="iconfont">&#xe610;</i> 35</span>
