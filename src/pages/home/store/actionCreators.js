@@ -23,6 +23,11 @@ export const mouseLeave = () => ({
 	type: constants.MOUSE_LEAVE
 });
 
+export const toggleTopShow = (show) => ({
+	type: constants.TOGGLE,
+	show
+});
+
 export const getLists = () => {
 	return (dispatch) => {
 		axios.get('/api/home.json')

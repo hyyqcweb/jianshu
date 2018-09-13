@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HomeWrapper, HomeLeft, HomeRight } from './style';
+import { HomeWrapper, HomeLeft, HomeRight, BackTop } from './style';
 import Topic from './components/Topic';
 import Recommend from './components/Recommend';
 import Writer from './components/Writer';
@@ -29,9 +29,24 @@ class Home extends Component {
 		// 	console.log(error)
 		// })
 		this.props.changeHomeData();
+		this.bindEvents();
+	}
+
+	componetWillUnmount() {
+		// 组件销毁时,去除事件绑定
+		window.removeEventListener('scroll',this.props.changeScrollTopShow)
+	}
+
+	bindEvents() {
+		window.addEventListener('scroll',this.props.changeScrollTopShow)
+	}
+
+	handleScrollTop = () => {
+		window.scrollTo(0,0)
 	}
 
 	render() {
+		const { showScroll } = this.props;
 		return (
 			<div>
 				<HomeWrapper>
@@ -44,11 +59,17 @@ class Home extends Component {
 						<Recommend/>
 						<Writer/>
 					</HomeRight>
+					{showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : ""}
+					
 				</HomeWrapper>
 			</div>
 		)
 	}
 }
+
+const mapState = (state) => ({
+	showScroll : state.getIn(['home','showScroll'])
+});
 
 const mapDispatch = (dispatch) => {
 	// 业务逻辑移到 thunk 中间件中去
@@ -60,8 +81,15 @@ const mapDispatch = (dispatch) => {
 	return {
 		changeHomeData() {
 			dispatch(actionCreators.getLists())
+		},
+		changeScrollTopShow(e) {
+			if(document.documentElement.scrollTop > 400) {
+				dispatch(actionCreators.toggleTopShow(true))
+			}else{
+				dispatch(actionCreators.toggleTopShow(false))
+			}
 		}
 	}
 };
 
-export default connect(null,mapDispatch)(Home); 
+export default connect(mapState,mapDispatch)(Home); 
