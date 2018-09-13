@@ -43,6 +43,9 @@ class Home extends Component {
 
 	handleScrollTop = () => {
 		window.scrollTo(0,0)
+		// setTimeout(function() {
+		//    window.scrollTo(0,0);
+  //       }, 500);
 	}
 
 	render() {
@@ -59,7 +62,7 @@ class Home extends Component {
 						<Recommend/>
 						<Writer/>
 					</HomeRight>
-					{showScroll ? <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop> : ""}
+					{showScroll ? <BackTop onClick={this.handleScrollTop}><i className="iconfont">&#xe62d;</i></BackTop> : ""}
 					
 				</HomeWrapper>
 			</div>

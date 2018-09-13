@@ -275,7 +275,8 @@ export const BackTop = styled.div`
 	height:60px;
 	line-height: 60px;
 	text-align: center;
-	border: 1px solid #ccc;
-	font-size: 14px;
 	cursor: pointer;
+	.iconfont {
+		font-size: 50px;
+	}
 `;
