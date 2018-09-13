@@ -1,6 +1,5 @@
 import { fromJS } from 'immutable';
 import { constants } from './index';
-import topicImg from '../../../statics/topic';
 
 // immutable
 const defaultState = fromJS({
@@ -17,8 +16,6 @@ export default (state = defaultState, action) => {
 			return state.set('mouseIn',true);
 		case constants.MOUSE_LEAVE:
 			return state.set('mouseIn',false);
-		// case constants.CHANGE_LIST:
-		// 	return state.set('writerList', action.data)
 		case 'change_home_data':
 			return state.merge({
 				topicList: fromJS(action.topicList),
