@@ -16,7 +16,7 @@ export default (state = defaultState, action) => {
 			return state.set('mouseIn',true);
 		case constants.MOUSE_LEAVE:
 			return state.set('mouseIn',false);
-		case 'change_home_data':
+		case constants.CHANGE_HOME_DATA:
 			return state.merge({
 				topicList: fromJS(action.topicList),
 				acticleList: fromJS(action.acticleList),

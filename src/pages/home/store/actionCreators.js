@@ -1,11 +1,12 @@
 import * as constants from './constants';
-import {fromJS} from 'immutable';
 import axios from 'axios';
 
-const changeHomeList = (data) => ({
-	type: constants.CHANGE_LIST,
-	data: fromJS(data),
-})
+const changeHomeData = (result) => ({
+	type: constants.CHANGE_HOME_DATA,
+	topicList: result.topicList,
+	acticleList: result.acticleList,
+	writerList: result.writerList
+});
 
 export const mouseEnter = () => ({
 	type: constants.MOUSE_ENTER
@@ -17,11 +18,12 @@ export const mouseLeave = () => ({
 
 export const getLists = () => {
 	return (dispatch) => {
-		axios.get('/api/homeWriter.json')
-		.then(res => {
-			dispatch(changeHomeList(res.data.users));
+			axios.get('/api/home.json')
+			.then((res) => {
+				const result = res.data.data;
+				dispatch(changeHomeData(result));
 		}).catch(error => {
-			console.log(error)
-		});	
+			console.log(error);
+		})
 	}
 }

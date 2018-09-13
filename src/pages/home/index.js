@@ -5,8 +5,8 @@ import Recommend from './components/Recommend';
 import Writer from './components/Writer';
 import List from './components/List';
 import logoPic from '../../statics/1.jpg';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { actionCreators } from './store';
 
 class Home extends Component {
 	constructor(props) {
@@ -14,19 +14,21 @@ class Home extends Component {
 		this.state={}
 	}
 	componentDidMount() {
-		axios.get('/api/home.json')
-		.then((res) => {
-			const result = res.data.data;
-			const action = {
-				type: 'change_home_data',
-				topicList: result.topicList,
-				acticleList: result.acticleList,
-				writerList: result.writerList
-			}
-			this.props.changeHomeData(action);
-		}).catch(error => {
-			console.log(error)
-		})
+		// 减少 业务逻辑 移到下面去
+		// axios.get('/api/home.json')
+		// .then((res) => {
+		// 	const result = res.data.data;
+		// 	const action = {
+		// 		type: 'change_home_data',
+		// 		topicList: result.topicList,
+		// 		acticleList: result.acticleList,
+		// 		writerList: result.writerList
+		// 	}
+		// 	this.props.changeHomeData();
+		// }).catch(error => {
+		// 	console.log(error)
+		// })
+		this.props.changeHomeData();
 	}
 
 	render() {
@@ -48,9 +50,13 @@ class Home extends Component {
 	}
 }
 
-const mapDispatch = (dispatch) => ({
-	changeHomeData(action) {
-		dispatch(action);
+const mapDispatch = (dispatch) => {
+	// 业务逻辑移到 thunk 中间件中去
+	return {
+		changeHomeData() {
+			dispatch(actionCreators.getLists())
+		}
 	}
-});
+};
+
 export default connect(null,mapDispatch)(Home); 
