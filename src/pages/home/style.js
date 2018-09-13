@@ -114,6 +114,20 @@ export const ListMeta = styled.div`
 	}
 `;
 
+// list下面的 加载更多
+
+export const LoadMore = styled.div`
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	background: #a5a5a5;
+	text-align: center;
+	border-radius: 20px;
+	color: #fff;
+	margin: 30px 0; 
+	cursor: pointer;
+`;
+
 // 右上广告
 
 export const RecommendWrapper = styled.div`
