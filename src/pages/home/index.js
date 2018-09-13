@@ -24,7 +24,7 @@ class Home extends Component {
 		// 		acticleList: result.acticleList,
 		// 		writerList: result.writerList
 		// 	}
-		// 	this.props.changeHomeData();
+		// 	this.props.changeHomeData(action);
 		// }).catch(error => {
 		// 	console.log(error)
 		// })
@@ -52,6 +52,11 @@ class Home extends Component {
 
 const mapDispatch = (dispatch) => {
 	// 业务逻辑移到 thunk 中间件中去
+	// return {
+	// 		changeHomeData(action){
+	// 			dispatch(action);
+	// 		}
+	// }
 	return {
 		changeHomeData() {
 			dispatch(actionCreators.getLists())
