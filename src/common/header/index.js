@@ -14,8 +14,7 @@ import {
 	SearchInfoList,
 	SearchInfoItem,
 	Addition,
-	Button,
-
+	Button
 } from './style';
 import { CSSTransition } from 'react-transition-group';
 import { connect} from 'react-redux';
@@ -27,7 +26,7 @@ class Header extends React.Component {
 		const {focused, list, page, handleMouseEnter, handleMouseLeave, mouseIn, handleChangePage, totalPage} = this.props;
 		const pageList = [];
 		const newList = list.toJS();
-		
+
 		for(let i= ((page-1) * 10); i < page*10; i++) {
 			pageList.push(
 				<SearchInfoItem key={Math.random() *100}>{newList[i]}</SearchInfoItem>
@@ -113,6 +112,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleInputFocus(list) {
+			// debugger
 			// 简洁代码 
 			// (list.size === 0) && dispatch(actionCreators.getList());
 			if(list.size === 0) {

@@ -2,7 +2,7 @@ import * as constants from './constants';
 import {fromJS} from 'immutable';
 import axios from 'axios';
 
-const changeList = (data) => ({
+const changeHomeList = (data) => ({
 	type: constants.CHANGE_LIST,
 	data: fromJS(data),
 })
@@ -15,11 +15,11 @@ export const mouseLeave = () => ({
 	type: constants.MOUSE_LEAVE
 });
 
-export const getList = () => {
+export const getLists = () => {
 	return (dispatch) => {
 		axios.get('/api/homeWriter.json')
 		.then(res => {
-			dispatch(changeList(res.data.users));
+			dispatch(changeHomeList(res.data.users));
 		}).catch(error => {
 			console.log(error)
 		});	

@@ -6,15 +6,15 @@ import { actionCreators} from '../store';
 // 写作
 class Writer extends Component {
     render() {
-    	const { handleTest, list } = this.props;
+    	const { handleTest, writerList } = this.props;
         return (
 			<WriterWrapper>
 				<WriterTitle>
 					<span className="author">推荐作者</span>
-					<span className="barter" onClick={handleTest(list)}><i ref={(icon) => {this.sponIcon = icon}} className="iconfont spin">&#xe852;</i> 换一批</span>
+					<span className="barter" onClick={handleTest(writerList)}><i ref={(icon) => {this.sponIcon = icon}} className="iconfont spin">&#xe852;</i> 换一批</span>
 				</WriterTitle>
 				{
-					list.map((item) => {
+					writerList.map((item) => {
 						let wordage = '';
 						let count = '';
 						
@@ -46,13 +46,13 @@ class Writer extends Component {
     }
 }
 const mapStateToProps = (state) => ({
-	list: state.getIn(['home','writerList']),
+	writerList: state.getIn(['home','writerList']),
 });
 const mapDispatchToProps = (dispatch) => {
 	return {
-		handleTest(list) {
-			if(list.size === 0) {
-				dispatch(actionCreators.getList());
+		handleTest(writerList) {
+			if(writerList.size === 0) {
+				dispatch(actionCreators.getLists());
 			}
 		}
 	}
