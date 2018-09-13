@@ -43,7 +43,9 @@ export const Nav = styled.div`
 	height: 100%;
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled.div.attrs({
+	href: '/login'
+})`
 	line-height: 56px;
 	margin: 0 15px;
 	font-size: 17px;

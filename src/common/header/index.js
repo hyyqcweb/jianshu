@@ -19,6 +19,7 @@ import {
 import { CSSTransition } from 'react-transition-group';
 import { connect} from 'react-redux';
 import { actionCreators} from './store';
+import { BrowserRouter,Link } from 'react-router-dom';
 
 class Header extends React.Component {
 
@@ -56,17 +57,25 @@ class Header extends React.Component {
 		}
 	}
 
+	handleRoute = () => {
+		// window.location.href="login"
+		window.location.reload()
+	}
+
 	render() {
-		const {focused, handleInputFocus, handleInputBlur, list} = this.props;
+		const {focused, handleInputFocus, handleInputBlur, list, login} = this.props;
 		return (
 			<NavBarDefault>
         		<HeaderWrapper>
 	              <Container>
 					<Logo/> 
+	              	
 					<Nav>
 						<NavItem className='left active'>首页</NavItem>
 						<NavItem className='left'>下载App</NavItem>
-						<NavItem className='right'>登陆</NavItem>
+						{
+							login ? <NavItem className='right'>退出</NavItem> : <BrowserRouter><Link to='/login'><NavItem onClick={this.handleRoute} className='right'>登陆</NavItem></Link></BrowserRouter>
+						}
 						<NavItem className='right'>
 							<i className="iconfont zoom">&#xe636;</i>
 						</NavItem>
@@ -104,7 +113,7 @@ const mapStateToProps = (state) => {
 		page: state.getIn(['header','page']),
 		totalPage: state.getIn(['header','totalPage']),
 		mouseIn: state.getIn(['header','mouseIn']),
-
+		login: state.getIn(['login','login'])
 		// focused : state.header.get('focused') // 引入immutable
 		// focused : state.header.focused // 没有引入immutable
 	}
