@@ -1,6 +1,6 @@
 ## 简书
 
-+ 技术栈: react全家桶 + styled-components + immutable...
++ 技术栈: react全家桶 + styled-components + immutable + react-loadable(代码异步加载,提升性能)...
 
 > 特点: 
 	更细致的**代码拆分**,给你一种大项目的感觉(如鱼得水)
