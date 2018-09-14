@@ -69,7 +69,6 @@ class Header extends React.Component {
         		<HeaderWrapper>
 	              <Container>
 					<Logo/> 
-	              	
 					<Nav>
 						<NavItem className='left active'>首页</NavItem>
 						<NavItem className='left'>下载App</NavItem>
@@ -92,10 +91,14 @@ class Header extends React.Component {
 						</SearchGroup>
 					</Nav>
 					<Addition>
-						<Button className="writting">
-						<i className="iconfont">&#xe690;</i>
-							写文章
-						</Button>
+						<BrowserRouter>
+							<Link to='/write'>
+								<Button className="writting" onClick={this.handleRoute}>
+								<i className="iconfont">&#xe690;</i>
+									写文章
+								</Button>
+							</Link>
+						</BrowserRouter>
 						<Button className="reg">注册</Button>
 					</Addition>
 				  </Container>
