@@ -31,8 +31,6 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
 	return {
 		handleSubmit(account, password) {
-			console.log(account.value);
-			console.log(password.value);
 			dispatch(actionCreators.login(account.value, password.value))
 		}
 	}

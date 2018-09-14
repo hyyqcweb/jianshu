@@ -20,7 +20,7 @@ import { CSSTransition } from 'react-transition-group';
 import { connect} from 'react-redux';
 import { actionCreators} from './store';
 import { actionCreators as loginActionCreators } from '../../pages/login/store'
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link, BrowserRouter, Redirect } from 'react-router-dom';
 
 class Header extends React.Component {
 
@@ -74,7 +74,7 @@ class Header extends React.Component {
 						<NavItem className='left active'>首页</NavItem>
 						<NavItem className='left'>下载App</NavItem>
 						{
-							login ? <NavItem onClick={logout} className='right'>退出</NavItem> : <BrowserRouter><Link to='/login'><NavItem onClick={this.handleRoute} className='right'>登陆</NavItem></Link></BrowserRouter>
+							login ? <NavItem onClick={logout}  className='right'>退出</NavItem> : <BrowserRouter><Link to='/login'><NavItem onClick={this.handleRoute} className='right'>登陆</NavItem></Link></BrowserRouter>
 						}
 						<NavItem className='right'>
 							<i className="iconfont zoom">&#xe636;</i>
