@@ -19,7 +19,8 @@ import {
 import { CSSTransition } from 'react-transition-group';
 import { connect} from 'react-redux';
 import { actionCreators} from './store';
-import { BrowserRouter,Link } from 'react-router-dom';
+import { actionCreators as loginActionCreators } from '../../pages/login/store'
+import { Link, BrowserRouter } from 'react-router-dom';
 
 class Header extends React.Component {
 
@@ -58,12 +59,11 @@ class Header extends React.Component {
 	}
 
 	handleRoute = () => {
-		// window.location.href="login"
 		window.location.reload()
 	}
 
 	render() {
-		const {focused, handleInputFocus, handleInputBlur, list, login} = this.props;
+		const {focused, handleInputFocus, handleInputBlur, list, login, logout} = this.props;
 		return (
 			<NavBarDefault>
         		<HeaderWrapper>
@@ -74,7 +74,7 @@ class Header extends React.Component {
 						<NavItem className='left active'>首页</NavItem>
 						<NavItem className='left'>下载App</NavItem>
 						{
-							login ? <NavItem className='right'>退出</NavItem> : <BrowserRouter><Link to='/login'><NavItem onClick={this.handleRoute} className='right'>登陆</NavItem></Link></BrowserRouter>
+							login ? <NavItem onClick={logout} className='right'>退出</NavItem> : <BrowserRouter><Link to='/login'><NavItem onClick={this.handleRoute} className='right'>登陆</NavItem></Link></BrowserRouter>
 						}
 						<NavItem className='right'>
 							<i className="iconfont zoom">&#xe636;</i>
@@ -121,7 +121,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		handleInputFocus(list) {
-			// debugger
 			// 简洁代码 
 			// (list.size === 0) && dispatch(actionCreators.getList());
 			if(list.size === 0) {
@@ -152,7 +151,9 @@ const mapDispatchToProps = (dispatch) => {
 			}else{
 				dispatch(actionCreators.changePage(1));
 			}
-			
+		},
+		logout() {
+			dispatch(loginActionCreators.logout())
 		}
 	}
 }
